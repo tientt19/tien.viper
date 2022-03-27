@@ -17,15 +17,18 @@ class TodoListInteractor: TodoListInteractorInputProtocol {
     }
     
     func retrieveTodos() {
+        // đã hoàn tất việc lấy dữ liệu và thông báo cho preseter để update ui.
         presenter?.didRetrieveTodos(todos)
     }
     
     func saveTodo(_ todo: TodoItem) {
+        // đã hoàn tất việc lấy dữ liệu và thông báo cho preseter để update ui.
         todoStore.addTodo(todo)
         presenter?.didAddTodo(todo)
     }
     
     func deleteTodo(_ todo: TodoItem) {
+        // đã hoàn tất việc lấy dữ liệu và thông báo cho preseter để update ui.
         todoStore.removeTodo(todo)
         presenter?.didRemoveTodo(todo)
     }

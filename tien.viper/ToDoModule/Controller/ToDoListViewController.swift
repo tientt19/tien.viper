@@ -30,6 +30,7 @@ class ToDoListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // báo cho Presenter rằng view chuẩn bị được hiện ra và cần thực hiện 1 cái gì đó
         presenter?.viewWillAppear()
     }
     
@@ -51,6 +52,7 @@ class ToDoListViewController: UIViewController {
             let contentText = alertController.textFields![1].text ?? ""
             guard !titleText.isEmpty else { return }
             let todoItem = TodoItem(title: titleText, content: contentText)
+            // báo cho present có sự kiện người dùng add item và cần được xử lý
             self?.presenter?.addTodo(todoItem)
         }))
         
@@ -62,12 +64,14 @@ class ToDoListViewController: UIViewController {
 extension ToDoListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = todos[indexPath.row]
+        // báo cho presenter người dùng tap để xem detail
         presenter?.showTodoDetail(todo)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let todoItem = todos[indexPath.row]
+            // báo cho presenter người dùng ấn xoá item và cần được xử lý
             presenter?.removeTodo(todoItem)
         }
     }
